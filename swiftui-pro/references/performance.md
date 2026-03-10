@@ -16,9 +16,14 @@
 Example:
 
 ```swift
-// Anti-pattern: stores an escaping closure on the view.
+// Preferred: store a closure that builds the view on-demand.
+// This is more efficient because the view is built lazily in body, not in the initializer.
 struct CardView<Content: View>: View {
     let content: () -> Content
+
+    init(@ViewBuilder content: @escaping () -> Content) {
+        self.content = content
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -30,8 +35,10 @@ struct CardView<Content: View>: View {
     }
 }
 
-// Preferred: store the built view value; the synthesized init handles calling the builder.
-struct CardView<Content: View>: View {
+// Anti-pattern: storing @ViewBuilder content as a property.
+// This creates the view in the initializer, which is unnecessarily expensive
+// and doesn't work well with dynamic content that depends on @State/@ObservedObject.
+struct CardViewWrong<Content: View>: View {
     @ViewBuilder let content: Content
 
     var body: some View {
