@@ -27,7 +27,16 @@ The skill builds upon my existing [AGENTS.md](https://github.com/twostraws/Swift
 
 ## Installing SwiftUI Pro
 
-You can install this skill into Claude Code, Codex, Gemini, Cursor, and more by using `npx`:
+### Claude Code
+
+Add the SwiftUI Agent Skill marketplace, then install the plugin:
+
+```
+/plugin marketplace add twostraws/SwiftUI-Agent-Skill
+/plugin install swiftui-pro@swiftui-agent-skill
+```
+
+### Codex, Gemini, Cursor, and others
 
 ```bash
 npx skills add https://github.com/twostraws/swiftui-agent-skill --skill swiftui-pro
@@ -45,20 +54,20 @@ When using `npx`, you can select exactly which agents you want to use during the
 
 Alternatively, you can clone this whole repository and install it however you want.
 
-If you're using Xcode, watch the YouTube video on [How to Install and Use Agent Skills in Xcode](https://www.youtube.com/watch?v=nKVZBKoB6P4) for a walkthrough.
+If you’re using Xcode, watch the YouTube video on [How to Install and Use Agent Skills in Xcode](https://www.youtube.com/watch?v=nKVZBKoB6P4) for a walkthrough.
 
 
 ## Using SwiftUI Pro
 
 The skill is called SwiftUI Pro, and can be triggered in various ways. For example, in Claude Code you would use this:
 
-> /swiftui-pro
+> /swiftui-pro:swiftui-pro
 
 And in Codex you would use this:
 
 > $swiftui-pro
 
-In both cases you can provide specific instructions if you want only a partial review. For example, `/swiftui-pro Check for deprecated API` on Claude, or `$swiftui-pro Focus on accessibility` in Codex.
+In both cases you can provide specific instructions if you want only a partial review. For example, `/swiftui-pro:swiftui-pro Check for deprecated API` on Claude, or `$swiftui-pro Focus on accessibility` in Codex.
 
 You can also trigger the skill using natural language:
 
