@@ -5,6 +5,5 @@
   "author": { "name": "Paul Hudson" },
   "homepage": "https://github.com/twostraws/SwiftUI-Agent-Skill",
   "repository": "https://github.com/twostraws/SwiftUI-Agent-Skill",
-  "license": "MIT",
-  "commands": ["./SKILL.md"]
+  "license": "MIT"
 }
