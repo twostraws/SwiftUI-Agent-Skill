@@ -27,7 +27,16 @@ The skill builds upon my existing [AGENTS.md](https://github.com/twostraws/Swift
 
 ## Installing SwiftUI Pro
 
-You can install this skill into Claude Code, Codex, Gemini, Cursor, and more by using `npx`:
+### Claude Code
+
+Add the SwiftUI Agent Skill marketplace, then install the plugin:
+
+```
+/plugin marketplace add twostraws/SwiftUI-Agent-Skill
+/plugin install swiftui-pro@swiftui-agent-skill
+```
+
+### Codex, Gemini, Cursor, and others
 
 ```bash
 npx skills add https://github.com/twostraws/swiftui-agent-skill --skill swiftui-pro
@@ -45,7 +54,7 @@ When using `npx`, you can select exactly which agents you want to use during the
 
 Alternatively, you can clone this whole repository and install it however you want.
 
-If you're using Xcode, watch the YouTube video on [How to Install and Use Agent Skills in Xcode](https://www.youtube.com/watch?v=nKVZBKoB6P4) for a walkthrough.
+If you’re using Xcode, watch the YouTube video on [How to Install and Use Agent Skills in Xcode](https://www.youtube.com/watch?v=nKVZBKoB6P4) for a walkthrough.
 
 
 ## Using SwiftUI Pro
