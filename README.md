@@ -89,6 +89,18 @@ I welcome all contributions, whether that's adding new checks, improving existin
 
 Please ensure you abide by the [Code of Conduct](CODE_OF_CONDUCT.md).
 
+## Evals and production telemetry
+
+The `evals/swiftui-pro/` directory contains a small human-review eval set for
+accessibility review, state-management refactoring, and deprecated API checks.
+The cases are harness-neutral so SwiftUI Pro behavior can be checked before
+release in Claude Code, Codex, Gemini, Cursor, or another agent workspace.
+
+If you publish this skill through Telvine, keep runtime telemetry metadata-only:
+`skill.invocation.start`, `skill.invocation.end`, and `skill.invocation.error`.
+Do not emit prompts, project files, screenshots, app data, tool arguments, or
+model outputs.
+
 
 ## License
 
