@@ -2,7 +2,43 @@
 
 - Respect the user’s accessibility settings for fonts, colors, animations, and more.
 - Do not force specific font sizes. Prefer Dynamic Type (`.font(.body)`, `.font(.headline)`, etc.).
-- If you *need* a custom font size, use `@ScaledMetric` when targeting iOS 18 and earlier. When targeting iOS 26 or later, `.font(.body.scaled(by:))` is also available to get font size adjustment.
+- If you *need* a custom font size, never use `.font(.system(size:))` with a hardcoded value — it does not scale with Dynamic Type. Instead, wrap `@ScaledMetric` in a `ViewModifier` so the font size scales automatically. This works on iOS 14+ and mirrors the iOS 26 `.font(.body.scaled(by:))` API, making future migration a single implementation swap:
+
+```swift
+struct ScaledSystemFont: ViewModifier {
+    @ScaledMetric private var scaledSize: CGFloat
+    let weight: Font.Weight
+    let design: Font.Design
+
+    init(
+        size: CGFloat,
+        weight: Font.Weight = .regular,
+        design: Font.Design = .default,
+        relativeTo textStyle: Font.TextStyle = .body
+    ) {
+        self._scaledSize = ScaledMetric(wrappedValue: size, relativeTo: textStyle)
+        self.weight = weight
+        self.design = design
+    }
+
+    func body(content: Content) -> some View {
+        content.font(.system(size: scaledSize, weight: weight, design: design))
+    }
+}
+
+extension View {
+    func scaledFont(
+        size: CGFloat,
+        weight: Font.Weight = .regular,
+        design: Font.Design = .default,
+        relativeTo textStyle: Font.TextStyle = .body
+    ) -> some View {
+        modifier(ScaledSystemFont(size: size, weight: weight, design: design, relativeTo: textStyle))
+    }
+}
+```
+
+Usage: `.scaledFont(size: 17, weight: .semibold, relativeTo: .headline)`. When targeting iOS 26 or later, `.font(.body.scaled(by:))` is also available.
 - Flag instances where images have unclear or unhelpful VoiceOver readings, e.g. `Image(.newBanner2026)`. If they are decorative, suggest using `Image(decorative:)` or `accessibilityHidden()`, otherwise attach an `accessibilityLabel()`.
 - If the user has “Reduce Motion” enabled, replace large, motion-based animations with opacity instead.
 - If buttons have complex or frequently changing labels, recommend using `accessibilityInputLabels()` to provide better Voice Control commands. For example, if a button had a live-updating share price for Apple such as “AAPL $271.68”, adding an input label for “Apple” would be a big improvement.
