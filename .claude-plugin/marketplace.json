@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "swiftui-pro",
-      "source": "./swiftui-pro",
+      "source": "./",
       "description": "Reviews SwiftUI code for best practices on modern APIs, maintainability, and performance.",
       "version": "2.0.0",
       "author": { "name": "Paul Hudson" },
