@@ -1,0 +1,36 @@
+spec_version: "0.1.0"
+name: swiftui-agent-skill
+version: 1.1.0
+description: >
+  A comprehensive SwiftUI code-review agent skill for Claude Code, Codex, Gemini,
+  Cursor, and other AI coding assistants. Reviews Swift and SwiftUI code for
+  deprecated API usage, modern best practices, navigation patterns, data-flow
+  correctness, accessibility (Dynamic Type, VoiceOver, Reduce Motion), design
+  (Apple Human Interface Guidelines), performance, and code hygiene. Targets
+  iOS 26+ / Swift 6.2+ and the real mistakes LLMs actually make when writing
+  SwiftUI.
+author: twostraws
+license: MIT
+
+model:
+  preferred: anthropic:claude-sonnet-4-6
+  constraints:
+    temperature: 0.2
+    max_tokens: 8192
+
+skills:
+  - swiftui-pro
+
+runtime:
+  max_turns: 30
+  timeout: 300
+
+compliance:
+  risk_tier: standard
+  supervision:
+    human_in_the_loop: none
+    kill_switch: true
+  recordkeeping:
+    audit_logging: false
+  data_governance:
+    pii_handling: none
