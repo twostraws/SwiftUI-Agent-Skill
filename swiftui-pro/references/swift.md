@@ -15,7 +15,7 @@
 - Prefer modern date formatting over handwritten patterns. If user-visible dates require `DateFormatter`, configure it with `setLocalizedDateFormatFromTemplate()` rather than assigning `dateFormat`, so the locale determines component ordering. Use `y`, rather than `yyyy`, for years in the template. Fixed formats used for API exchange are outside this rule.
 - Format lists for display with `formatted()` rather than inserting comma separators yourself. For example, `destinations.formatted()` provides the locale's punctuation and conjunction; `.formatted(.list(type: .or))` uses the alternative conjunction, and `.list(memberStyle:type:)` formats non-string members. Keep `joined(separator:)` for storage or interchange where a fixed delimiter is intentional.
 - Outside SwiftUI, create localized strings with `String(localized:)` rather than `NSLocalizedString()`. Xcode cannot extract interpolated keys from the older function, leaving that text untranslated.
-- When trying to convert a string to a date, prefer the modern `Date` initializer API such as `Date(myString, strategy: .iso8601)`.
+- When trying to convert a string to a date, prefer the modern `Date` initializer API such as `try Date(myString, strategy: .iso8601)`.
 - Flag instances where errors triggered by a user action are swallowed silently, e.g. using `print(error.localizedDescription)` rather than showing an alert or similar.
 - Prefer `if let value {` shorthand over `if let value = value {`.
 - Omit `return` for single expression functions. `if` and `switch` can be used as expressions when returning values and assigning to variables.
