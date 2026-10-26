@@ -2,9 +2,13 @@
   "name": "swiftui-pro",
   "version": "2.0.0",
   "description": "Reviews SwiftUI code for best practices on modern APIs, maintainability, and performance.",
-  "author": { "name": "Paul Hudson" },
+  "author": {
+    "name": "Paul Hudson"
+  },
   "homepage": "https://github.com/twostraws/SwiftUI-Agent-Skill",
   "repository": "https://github.com/twostraws/SwiftUI-Agent-Skill",
   "license": "MIT",
-  "skills": "./skills/"
+  "skills": [
+    "./swiftui-pro"
+  ]
 }
