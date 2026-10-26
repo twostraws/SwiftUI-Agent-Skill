@@ -62,7 +62,7 @@ ScrollView {
 }
 ```
 
-SwiftUI has no built-in way to apply this difference. Add a helper like this one, adapted from an Apple example, in its own file:
+SwiftUI has no built-in way to apply this difference. Add a helper like this one, adapted from an Apple example, in its own file. It inserts moved items in `sources` order, which is the order the person selected them rather than their current collection order:
 
 ```swift
 extension ReorderDifference where CollectionID == ReorderableSingleCollectionIdentifier {
@@ -70,16 +70,11 @@ extension ReorderDifference where CollectionID == ReorderableSingleCollectionIde
     where Items: RangeReplaceableCollection,
           Items.Element: Identifiable,
           Items.Element.ID == ItemID {
-        let sourceIDs = Set(sources)
-        var relocated: [Items.Element] = []
-
-        items.removeAll { candidate in
-            if sourceIDs.contains(candidate.id) {
-                relocated.append(candidate)
-                return true
-            }
-            return false
+        let relocated = sources.compactMap { sourceID in
+            items.first { $0.id == sourceID }
         }
+        let sourceIDs = Set(sources)
+        items.removeAll { sourceIDs.contains($0.id) }
 
         switch destination.position {
         case .before(let followingID):

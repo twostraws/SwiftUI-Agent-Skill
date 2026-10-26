@@ -85,7 +85,7 @@ Button("Add User", systemImage: "plus", action: addUser)
 // Before
 TextField("Username", text: Binding(
     get: { model.username },
-    set: { model.username = $0; model.save() }
+    set: { newValue in model.username = newValue; model.save() }
 ))
 
 // After
